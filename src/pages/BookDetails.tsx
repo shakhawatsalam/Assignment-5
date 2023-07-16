@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useParams } from "react-router-dom";
 import { ProductReview } from "../component/ProductReview";
 import NavBar from "../component/NavBar";
+import { useGetSingleBookQuery } from "../redux/api/apiSlice";
 
 export default function BookDetails() {
   const { id } = useParams();
+
+  const { data } = useGetSingleBookQuery(id);
+  console.log(data?.data);
+  const book = data?.data;
   return (
     <>
       <NavBar />
@@ -14,13 +21,14 @@ export default function BookDetails() {
           <div className='grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center'>
             <div>
               <h1 className='block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white'>
-                Start your journey with{" "}
-                <span className='text-blue-600'>Preline</span>
+                {book?.title}
               </h1>
               <p className='mt-3 text-lg text-gray-800 dark:text-gray-400'>
-                Hand-picked professionals and expertly crafted components,
-                designed for any kind of entrepreneur.
+                {book?.details}
               </p>
+              <h1 className="text-2xl text-gray-500 mt-4">Author: {book?.author}</h1>
+              <h1 className="text-2xl text-gray-500 mt-2">Genre: {book?.genre}</h1>
+              <h1 className="text-2xl text-gray-500 mt-2">Publication Date: {book?.publicationDate}</h1>
 
               {/* <!-- Buttons --> */}
               <div className='mt-7 grid gap-3 w-full sm:inline-flex'>
@@ -50,7 +58,7 @@ export default function BookDetails() {
             <div className='relative ml-4'>
               <img
                 className='w-full rounded-md'
-                src='https://images.unsplash.com/photo-1665686377065-08ba896d16fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&h=800&q=80'
+                src={book?.image}
                 alt='Image Description'
               />
               <div className='absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 mr-4 -ml-4 lg:mt-6 lg:-mb-6 lg:mr-6 lg:-ml-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0'></div>
@@ -178,13 +186,12 @@ export default function BookDetails() {
             {/* <!-- End Col --> */}
           </div>
           {/* <!-- End Grid --> */}
-          <div className="border-t-2 border-gray-500 w-full h-1 mt-20"></div>
+          <div className='border-t-2 border-gray-500 w-full h-1 mt-20'></div>
         </div>
       </div>
-          {/* <!-- End Hero --> */}
-          <h1>hello</h1>
-          <ProductReview id={id!} />
-          
+      {/* <!-- End Hero --> */}
+      <h1>hello</h1>
+      <ProductReview id={id!} />
     </>
   );
 }
