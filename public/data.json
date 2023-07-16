@@ -1,0 +1,134 @@
+[
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Classic",
+    "publicationDate": "April 10, 1925",
+    "reviews": [
+      "A timeless classic that captures the essence of the Jazz Age.",
+      "Fitzgerald's prose is elegant and captivating."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "publicationDate": "July 11, 1960",
+    "reviews": [
+      "A powerful and thought-provoking novel about racial injustice.",
+      "Scout's perspective provides a unique insight into the story."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Classic",
+    "publicationDate": "April 10, 1925",
+    "reviews": [
+      "A timeless classic that captures the essence of the Jazz Age.",
+      "Fitzgerald's prose is elegant and captivating."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "publicationDate": "July 11, 1960",
+    "reviews": [
+      "A powerful and thought-provoking novel about racial injustice.",
+      "Scout's perspective provides a unique insight into the story."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "publicationDate": "June 8, 1949",
+    "reviews": [
+      "A chilling and prophetic depiction of a totalitarian society.",
+      "Orwell's concepts of Big Brother and Newspeak are hauntingly relevant."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "genre": "Romance",
+    "publicationDate": "January 28, 1813",
+    "reviews": [
+      "A delightful and witty novel with memorable characters.",
+      "Austen's exploration of societal norms is still engaging today."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "genre": "Coming-of-Age",
+    "publicationDate": "July 16, 1951",
+    "reviews": [
+      "Holden Caulfield's voice is authentic and captures the angst of adolescence.",
+      "Salinger's portrayal of alienation resonates with readers of all ages."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "The Lord of the Rings",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "publicationDate": "July 29, 1954",
+    "reviews": [
+      "A richly imagined epic that defined the fantasy genre.",
+      "Tolkien's world-building and intricate plot are masterful."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "genre": "Fantasy",
+    "publicationDate": "June 26, 1997",
+    "reviews": [
+      "An enchanting start to the beloved Harry Potter series.",
+      "Rowling's magical world and relatable characters are captivating."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "publicationDate": "September 21, 1937",
+    "reviews": [
+      "A charming and adventurous tale that precedes The Lord of the Rings.",
+      "Bilbo Baggins' journey is filled with whimsy and danger."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "To the Lighthouse",
+    "author": "Virginia Woolf",
+    "genre": "Modernist",
+    "publicationDate": "May 5, 1927",
+    "reviews": [
+      "Woolf's stream-of-consciousness narrative style is poetic and introspective.",
+      "The novel explores the complexities of human relationships and perceptions."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  },
+  {
+    "title": "Moby-Dick",
+    "author": "Herman Melville",
+    "genre": "Adventure",
+    "publicationDate": "October 18, 1851",
+    "reviews": [
+      "An epic and symbolic tale of obsession and the human condition.",
+      "Melville's prose is immersive and full of literary depth."
+    ],
+    "image": "https://source.unsplash.com/random/?book"
+  }
+]

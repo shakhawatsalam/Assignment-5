@@ -20,6 +20,10 @@ const routes = createBrowserRouter([
     path: "/addbooks",
     element: <AddBooks />,
   },
+  {
+    path: "/book-details/:id",
+    // element:,
+  },
 ]);
 
 export default routes;
