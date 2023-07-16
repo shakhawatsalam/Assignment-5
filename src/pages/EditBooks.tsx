@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useParams } from "react-router-dom";
 import NavBar from "../component/NavBar";
-import { useGetSingleBookQuery } from "../redux/api/apiSlice";
+import {
+  useGetSingleBookQuery,
+  useUpdateSingleBookMutation,
+} from "../redux/api/apiSlice";
 import { useForm } from "react-hook-form";
 import { Book } from "../Types/globaltypes";
 
@@ -12,12 +16,21 @@ export default function EditBooks() {
   const { id } = useParams();
   const { register, handleSubmit, reset } = useForm<Book>();
 
+  const [updateProduct, { isError, isLoading, isSuccess, error }] =
+    useUpdateSingleBookMutation();
+  if (isSuccess) {
+    console.log("success");
+  }
+  if (error) {
+    console.log(error);
+  }
   const { data } = useGetSingleBookQuery(id);
   const book = data?.data;
   console.log(book);
 
   const onSubmit = (data: Book) => {
-    const EditedBook = {
+    const EditedBook: Book = {
+      id: book?._id,
       title: data.title ? data.title : book.title,
       author: data.author ? data.author : book.author,
       genre: data.genre ? data.genre : book.genre,
@@ -27,8 +40,9 @@ export default function EditBooks() {
       image: data.image ? data.image : book.image,
       details: data.details ? data.details : book.details,
     };
+    updateProduct({ id: EditedBook?.id, data: EditedBook });
+    reset();
     console.log(EditedBook);
-
   };
   return (
     <>
