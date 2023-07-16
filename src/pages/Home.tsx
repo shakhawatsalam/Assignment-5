@@ -5,6 +5,9 @@ export default function Home() {
     <>
       <div>
         <NavBar />
+        <div className='max-w-7xl mx-auto'>
+          
+         </div>
       </div>
     </>
   );

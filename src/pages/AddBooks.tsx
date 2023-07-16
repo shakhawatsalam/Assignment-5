@@ -1,10 +1,10 @@
 import NavBar from "../component/NavBar";
 
-export default function SignUp() {
+export default function AddBooks() {
   return (
     <>
       <NavBar />
-      <div>SignUp</div>;
+      <div>AddBooks</div>
     </>
   );
 }

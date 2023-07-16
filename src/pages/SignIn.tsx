@@ -1,7 +1,10 @@
-
+import NavBar from "../component/NavBar";
 
 export default function SignIn() {
   return (
-    <div>SignIn</div>
-  )
+    <>
+      <NavBar />
+      <div>SignIn</div>
+    </>
+  );
 }
