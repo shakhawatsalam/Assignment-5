@@ -56,6 +56,16 @@ export default function NavBar() {
                 to="/addbooks">
                 Add Books
               </Link>
+              <Link
+                className='font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500'
+                to="/addbooks">
+                Cart
+              </Link>
+              <Link
+                className='font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500'
+                to="/addbooks">
+                All Books
+              </Link>
               <a
                 className='font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500'
                 href='#'>

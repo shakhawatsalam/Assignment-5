@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import AddBooks from "../pages/AddBooks";
+import BookDetails from "../pages/BookDetails";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +23,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/book-details/:id",
-    // element:,
+    element: <BookDetails/>,
   },
 ]);
 
