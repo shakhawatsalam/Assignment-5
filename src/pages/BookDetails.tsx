@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ProductReview } from "../component/ProductReview";
 import NavBar from "../component/NavBar";
 import { useGetSingleBookQuery } from "../redux/api/apiSlice";
@@ -9,7 +10,7 @@ export default function BookDetails() {
   const { id } = useParams();
 
   const { data } = useGetSingleBookQuery(id);
-  console.log(data?.data);
+
   const book = data?.data;
   return (
     <>
@@ -26,16 +27,22 @@ export default function BookDetails() {
               <p className='mt-3 text-lg text-gray-800 dark:text-gray-400'>
                 {book?.details}
               </p>
-              <h1 className="text-2xl text-gray-500 mt-4">Author: {book?.author}</h1>
-              <h1 className="text-2xl text-gray-500 mt-2">Genre: {book?.genre}</h1>
-              <h1 className="text-2xl text-gray-500 mt-2">Publication Date: {book?.publicationDate}</h1>
+              <h1 className='text-2xl text-gray-500 mt-4'>
+                Author: {book?.author}
+              </h1>
+              <h1 className='text-2xl text-gray-500 mt-2'>
+                Genre: {book?.genre}
+              </h1>
+              <h1 className='text-2xl text-gray-500 mt-2'>
+                Publication Date: {book?.publicationDate}
+              </h1>
 
               {/* <!-- Buttons --> */}
               <div className='mt-7 grid gap-3 w-full sm:inline-flex'>
-                <a
+                <Link
                   className='inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-sm lg:text-base text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800'
-                  href='#'>
-                  Get started
+                  to={`/editbooks/${book?._id}`}>
+                  Edit Book
                   <svg
                     className='w-2.5 h-2.5'
                     width='16'
@@ -49,7 +56,7 @@ export default function BookDetails() {
                       stroke-linecap='round'
                     />
                   </svg>
-                </a>
+                </Link>
               </div>
               {/* <!-- End Buttons --> */}
             </div>
@@ -190,7 +197,6 @@ export default function BookDetails() {
         </div>
       </div>
       {/* <!-- End Hero --> */}
-      <h1>hello</h1>
       <ProductReview id={id!} />
     </>
   );
