@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
 import Footer from "../component/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { logInUser } from "../redux/features/user/userSlice";
 import { useEffect } from "react";
@@ -20,6 +23,9 @@ export default function SignUp() {
   } = useForm<FormValues>();
   const dispatch = useAppDispatch();
   const { user, isLoading } = useAppSelector((state) => state.user);
+  const location = useLocation();
+  const from = location?.state?.path || "/";
+  console.log(location?.state?.path);
 
   const navigate = useNavigate();
 
@@ -31,9 +37,9 @@ export default function SignUp() {
   };
   useEffect(() => {
     if (user.email && !isLoading) {
-      navigate("/");
+      navigate(from, { replace: true });
     }
-  }, [user.email, isLoading]);
+  }, [user.email, isLoading, from, navigate]);
   return (
     <div>
       <div>

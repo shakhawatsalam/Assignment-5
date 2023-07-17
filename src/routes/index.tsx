@@ -6,6 +6,7 @@ import AddBooks from "../pages/AddBooks";
 import BookDetails from "../pages/BookDetails";
 import EditBooks from "../pages/EditBooks";
 import App from "../App";
+import PrivetRoute from "./PrivetRoute";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -25,11 +26,19 @@ const routes = createBrowserRouter([
       },
       {
         path: "/addbooks",
-        element: <AddBooks />,
+        element: (
+          <PrivetRoute>
+            <AddBooks />,
+          </PrivetRoute>
+        ),
       },
       {
         path: "/editbooks/:id",
-        element: <EditBooks />,
+        element: (
+          <PrivetRoute>
+            <EditBooks />,
+          </PrivetRoute>
+        ),
       },
       {
         path: "/book-details/:id",

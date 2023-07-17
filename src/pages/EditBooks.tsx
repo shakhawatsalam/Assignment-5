@@ -46,7 +46,6 @@ export default function EditBooks() {
   };
   return (
     <>
-      <NavBar />
       <div className='max-w-7xl mx-auto'>
         <div className='border flex items-center justify-center h-[100vh] flex-col'>
           <h1 className='text-5xl mb-3'>Edit Book</h1>
