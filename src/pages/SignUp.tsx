@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
 import Footer from "../component/Footer";
-import NavBar from "../component/NavBar";
 import { Link } from "react-router-dom";
+import { createUser } from "../redux/features/user/userSlice";
+import { useAppDispatch } from "../redux/hook";
 
 interface FormValues {
   email: string;
@@ -20,21 +22,19 @@ export default function SignUp() {
     handleSubmit,
   } = useForm<FormValues>();
 
-  const onSubmit = async (data: {
-    email: string;
-    password: string;
-    name: string;
-  }) => {
+  const dispatch = useAppDispatch();
+
+  const onSubmit = async (data: FormValues) => {
     console.log(data);
     const name = data.name;
     const email = data.email;
     const password = data.password;
     // await createUserWithEmailAndPassword(email, password);
     // await updateProfile({ displayName: data.name });
+    dispatch(createUser({ email: email, password: password }));
   };
   return (
     <div>
-      <NavBar></NavBar>
       <div className='flex min-h-[66.1vh] justify-center items-center'>
         <div className='card w-96 bg-base-100 shadow-xl'>
           <div className='card-body'>
@@ -163,6 +163,4 @@ export default function SignUp() {
     </div>
   );
 }
-function createUserWithEmailAndPassword(email: any, password: any) {
-  throw new Error("Function not implemented.");
-}
+

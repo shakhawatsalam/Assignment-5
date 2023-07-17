@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
 import Footer from "../component/Footer";
-import NavBar from "../component/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { logInUser } from "../redux/features/user/userSlice";
+import { useEffect } from "react";
 
 interface FormValues {
   email: string;
@@ -15,15 +18,24 @@ export default function SignUp() {
     formState: { errors },
     handleSubmit,
   } = useForm<FormValues>();
+  const dispatch = useAppDispatch();
+  const { user, isLoading } = useAppSelector((state) => state.user);
+
+  const navigate = useNavigate();
+
   const onSubmit = (data: { email: string; password: string }) => {
     const email = data.email;
     const password = data.password;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    // signInWithEmailAndPassword(email, password);
+    dispatch(logInUser({ email: email, password: password }));
   };
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate("/");
+    }
+  }, [user.email, isLoading]);
   return (
     <div>
-      <NavBar></NavBar>
       <div>
         <div className='flex h-screen justify-center items-center'>
           <div className='card w-96 bg-base-100 shadow-xl'>

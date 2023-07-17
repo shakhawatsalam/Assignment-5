@@ -5,30 +5,37 @@ import SignUp from "../pages/SignUp";
 import AddBooks from "../pages/AddBooks";
 import BookDetails from "../pages/BookDetails";
 import EditBooks from "../pages/EditBooks";
+import App from "../App";
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/signin",
-    element: <SignIn />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
-  },
-  {
-    path: "/addbooks",
-    element: <AddBooks />,
-  },
-  {
-    path: "/editbooks/:id",
-    element: <EditBooks />,
-  },
-  {
-    path: "/book-details/:id",
-    element: <BookDetails />,
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/addbooks",
+        element: <AddBooks />,
+      },
+      {
+        path: "/editbooks/:id",
+        element: <EditBooks />,
+      },
+      {
+        path: "/book-details/:id",
+        element: <BookDetails />,
+      },
+    ],
   },
 ]);
 

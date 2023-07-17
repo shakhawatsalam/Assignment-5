@@ -1,9 +1,7 @@
-import NavBar from "../component/NavBar";
 
 export default function AddBooks() {
   return (
     <>
-      <NavBar />
       <div className='max-w-7xl mx-auto'>
         <div className='border flex items-center justify-center h-[100vh] flex-col'>
           <h1 className='text-5xl mb-3'>Add A New Book</h1>
