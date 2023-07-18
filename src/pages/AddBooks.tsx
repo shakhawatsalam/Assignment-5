@@ -5,23 +5,28 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useForm } from "react-hook-form";
 import { Book } from "../Types/globaltypes";
+import { useAppSelector } from "../redux/hook";
+import { usePostBookMutation } from "../redux/api/apiSlice";
 
 export default function AddBooks() {
   const { register, handleSubmit, reset } = useForm<Book>();
+  const { user } = useAppSelector((state) => state.user);
+  const [addBook] = usePostBookMutation();
 
   const onSubmit = (data: Book) => {
-    const EditedBook = {
-      
+    const newBook = {
+      ownerEmail: user.email,
       title: data.title,
       author: data.author,
       genre: data.genre,
+      reviews: [],
       publicationDate: data.publicationDate,
       image: data.image,
       details: data.details,
     };
-    // updateProduct({ id: EditedBook?.id, data: EditedBook });
+    addBook(newBook);
     reset();
-    console.log(EditedBook);
+    console.log(newBook);
   };
   return (
     <>

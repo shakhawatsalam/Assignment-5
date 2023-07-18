@@ -4,20 +4,20 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useParams } from "react-router-dom";
-import NavBar from "../component/NavBar";
 import {
   useGetSingleBookQuery,
   useUpdateSingleBookMutation,
 } from "../redux/api/apiSlice";
 import { useForm } from "react-hook-form";
 import { Book } from "../Types/globaltypes";
+import { toast } from "react-hot-toast";
+import { useAppSelector } from "../redux/hook";
 
 export default function EditBooks() {
   const { id } = useParams();
   const { register, handleSubmit, reset } = useForm<Book>();
-
-  const [updateProduct, { isError, isLoading, isSuccess, error }] =
-    useUpdateSingleBookMutation();
+  const { user } = useAppSelector((state) => state.user);
+  const [updateProduct, { isSuccess, error }] = useUpdateSingleBookMutation();
   if (isSuccess) {
     console.log("success");
   }
@@ -29,20 +29,27 @@ export default function EditBooks() {
   console.log(book);
 
   const onSubmit = (data: Book) => {
-    const EditedBook: Book = {
-      id: book?._id,
-      title: data.title ? data.title : book.title,
-      author: data.author ? data.author : book.author,
-      genre: data.genre ? data.genre : book.genre,
-      publicationDate: data.publicationDate
-        ? data.publicationDate
-        : book.publicationDate,
-      image: data.image ? data.image : book.image,
-      details: data.details ? data.details : book.details,
-    };
-    updateProduct({ id: EditedBook?.id, data: EditedBook });
-    reset();
-    console.log(EditedBook);
+    if (book.ownerEmail !== user.email) {
+      toast.error(
+        "You are not allowed to edit this book you are not the owner of the book"
+      );
+    } else {
+      const EditedBook: Book = {
+        id: book?._id,
+        title: data.title ? data.title : book.title,
+        author: data.author ? data.author : book.author,
+        genre: data.genre ? data.genre : book.genre,
+        publicationDate: data.publicationDate
+          ? data.publicationDate
+          : book.publicationDate,
+        image: data.image ? data.image : book.image,
+        details: data.details ? data.details : book.details,
+      };
+      updateProduct({ id: EditedBook?.id, data: EditedBook });
+      toast.success("edited successfully");
+      reset();
+      console.log(EditedBook);
+    }
   };
   return (
     <>
