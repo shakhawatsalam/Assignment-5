@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ProductReview } from "../component/ProductReview";
-import NavBar from "../component/NavBar";
 import { useGetSingleBookQuery } from "../redux/api/apiSlice";
 import { svg } from "../ui/svg";
 
 export default function BookDetails() {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const { data } = useGetSingleBookQuery(id);
@@ -40,7 +40,12 @@ export default function BookDetails() {
 
               {/* <!-- Buttons --> */}
               <div className='mt-7 grid gap-3 w-full sm:inline-flex'>
-                <Link
+                {<button
+                  onClick={() => navigate(`/editbooks/${book?._id}`)}
+                  className='btn btn-info btn-lg'>
+                  Edit Book
+                </button>}
+                {/* <Link
                   className='inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-sm lg:text-base text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800'
                   to={`/editbooks/${book?._id}`}>
                   Edit Book
@@ -57,7 +62,7 @@ export default function BookDetails() {
                       stroke-linecap='round'
                     />
                   </svg>
-                </Link>
+                </Link> */}
               </div>
               {/* <!-- End Buttons --> */}
             </div>
@@ -82,7 +87,7 @@ export default function BookDetails() {
         </div>
       </div>
       {/* <!-- End Hero --> */}
-      <ProductReview id ={id!} />
+      <ProductReview id={id!} />
     </>
   );
 }

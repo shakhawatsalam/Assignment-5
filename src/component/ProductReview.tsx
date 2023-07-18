@@ -9,6 +9,7 @@ import {
   useGetCommentQuery,
   usePostReviewsMutation,
 } from "../redux/api/apiSlice";
+import { useAppSelector } from "../redux/hook";
 
 interface IProps {
   id: string;
@@ -17,23 +18,24 @@ export const ProductReview = ({ id }: IProps) => {
   const [inputValue, setInputValue] = useState<string>("");
   const { data } = useGetCommentQuery(id);
   const reviews = data?.reviews;
-  const [postReview, { isLoading, isError, isSuccess }] =
-    usePostReviewsMutation();
-  console.log(isError);
+  const [postReview] = usePostReviewsMutation();
+  const { user } = useAppSelector((state) => state.user);
+
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (inputValue !== "") {
+      const options = {
+        id: id,
+        data: { reviews: inputValue },
+      };
+      console.log(options);
 
-    const options = {
-      id: id,
-      data: { reviews: inputValue },
-    };
-    console.log(options);
+      postReview(options);
 
-    postReview(options);
-
-    console.log(inputValue);
-    setInputValue("");
+      console.log(inputValue);
+      setInputValue("");
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -47,11 +49,20 @@ export const ProductReview = ({ id }: IProps) => {
           value={inputValue}
           className='py-3 px-4 block w-full border border-gray-700 rounded-md text-sm mt-10 mb-10'></textarea>
 
-        <button
+        {/* <button
           type='submit'
           className='inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-sm lg:text-base text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-2 px-4 dark:focus:ring-offset-gray-800 h-[50px]'>
           Submit
-        </button>
+        </button> */}
+        {user.email ? (
+          <button type='submit' className='btn btn-info'>
+            Submit
+          </button>
+        ) : (
+          <button type='submit' disabled className='btn btn-info'>
+            Submit
+          </button>
+        )}
       </form>
       <div className='mt-2'>
         {reviews?.map((comment: string, index: number) => (
