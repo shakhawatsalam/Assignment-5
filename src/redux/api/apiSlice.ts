@@ -75,6 +75,13 @@ export const bookApi = createApi({
         body: data,
       }),
     }),
+    addToReadingList: builder.mutation({
+      query: ({ email, data }) => ({
+        url: `/readinglist/${email}`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -89,4 +96,5 @@ export const {
   useGetSearchTermBooksQuery,
   useCreateUserMutation,
   useAddToWishListMutation,
+  useAddToReadingListMutation,
 } = bookApi;

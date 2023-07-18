@@ -3,13 +3,17 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { Link } from "react-router-dom";
 import { Book } from "../Types/globaltypes";
-import { useAddToWishListMutation } from "../redux/api/apiSlice";
+import {
+  useAddToReadingListMutation,
+  useAddToWishListMutation,
+} from "../redux/api/apiSlice";
 import { useAppSelector } from "../redux/hook";
 
 export default function CartSingle({ book }: { book: Book }) {
   const { _id } = book;
   const { user } = useAppSelector((state) => state.user);
   const [wishList] = useAddToWishListMutation();
+  const [readingList] = useAddToReadingListMutation();
 
   const addToWishList = () => {
     const options = {
@@ -17,6 +21,13 @@ export default function CartSingle({ book }: { book: Book }) {
       data: { wishlist: book },
     };
     wishList(options);
+  };
+  const addToReadingList = () => {
+    const options = {
+      email: user.email,
+      data: { wishlist: book },
+    };
+    readingList(options);
   };
   return (
     <>
@@ -80,15 +91,16 @@ export default function CartSingle({ book }: { book: Book }) {
             className='w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-bl-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800'>
             Details
           </Link>
-          <button
+          <a
             onClick={() => addToWishList()}
             className='w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800'>
             Add to Wish List
-          </button>
+          </a>
           <a
+            onClick={() => addToReadingList()}
             className='w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800'
             href='#'>
-            View API
+            Reading List
           </a>
         </div>
       </div>
