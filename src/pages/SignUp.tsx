@@ -24,7 +24,7 @@ export default function SignUp() {
     formState: { errors },
     handleSubmit,
   } = useForm<FormValues>();
-  const { user, error, isError } = useAppSelector((state) => state.user);
+  const { error, isError } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [createUserToDatabase] = useCreateUserMutation();
   const onSubmit = async (data: FormValues) => {

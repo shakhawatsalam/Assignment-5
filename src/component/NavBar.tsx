@@ -100,7 +100,7 @@ export default function NavBar() {
               </Link>
               <Link
                 className='font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500'
-                to='/allbooks'>
+                to='/wishlist'>
                 Wish List
               </Link>
             </div>

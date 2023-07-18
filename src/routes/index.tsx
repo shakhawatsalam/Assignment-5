@@ -8,6 +8,8 @@ import EditBooks from "../pages/EditBooks";
 import App from "../App";
 import PrivetRoute from "./PrivetRoute";
 import AllBook from "../pages/AllBook";
+import WishList from "../pages/WishList";
+import ReadingList from "../pages/ReadingList";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +50,14 @@ const routes = createBrowserRouter([
       {
         path: "/allBooks",
         element: <AllBook />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishList />,
+      },
+      {
+        path: "/readinglist",
+        element: <ReadingList />,
       },
     ],
   },

@@ -1,13 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import { Book } from "../Types/globaltypes";
+
 
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 
-
-export default function AllBookRow({ book, index, setDeletingOrder }) {
+export default function AllBookRow({
+  book,
+  index,
+  setDeletingOrder,
+}: {
+  book: any;
+  index: any;
+  setDeletingOrder: any;
+}) {
   return (
     <tr>
       <th>{index + 1}</th>

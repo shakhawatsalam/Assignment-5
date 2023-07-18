@@ -68,6 +68,11 @@ export const bookApi = createApi({
         body: data,
       }),
     }),
+    getUser: builder.query({
+      query: (email) => ({
+        url: `/users/${email}`,
+      }),
+    }),
     addToWishList: builder.mutation({
       query: ({ email, data }) => ({
         url: `/wishlist/${email}`,
@@ -97,4 +102,5 @@ export const {
   useCreateUserMutation,
   useAddToWishListMutation,
   useAddToReadingListMutation,
+  useGetUserQuery,
 } = bookApi;
