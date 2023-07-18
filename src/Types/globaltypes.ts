@@ -1,4 +1,5 @@
 export type Book = {
+  [x: string]: Key | null | undefined;
 
   id: string;
   title: string;

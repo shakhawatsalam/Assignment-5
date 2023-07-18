@@ -9,8 +9,14 @@ export const bookApi = createApi({
   tagTypes: ["SingleBooks", "reviews", "books"],
   endpoints: (builder) => ({
     getBooks: builder.query({
-      query: () => ({
-        url: "/books",
+      query: (url) => ({
+        url: url,
+      }),
+      providesTags: ["books"],
+    }),
+    getSearchTermBooks: builder.query({
+      query: (searchTerm) => ({
+        url: `/books?/searchTerm=${searchTerm}`,
       }),
       providesTags: ["books"],
     }),
@@ -34,6 +40,7 @@ export const bookApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["books"],
     }),
     removeBook: builder.mutation({
       query: (id) => ({
@@ -65,4 +72,5 @@ export const {
   usePostReviewsMutation,
   usePostBookMutation,
   useRemoveBookMutation,
+  useGetSearchTermBooksQuery,
 } = bookApi;
