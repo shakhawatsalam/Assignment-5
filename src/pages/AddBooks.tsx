@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Book } from "../Types/globaltypes";
 import { useAppSelector } from "../redux/hook";
 import { usePostBookMutation } from "../redux/api/apiSlice";
+import { toast } from "react-hot-toast";
 
 export default function AddBooks() {
   const { register, handleSubmit, reset } = useForm<Book>();
@@ -25,8 +26,8 @@ export default function AddBooks() {
       details: data.details,
     };
     addBook(newBook);
+    toast.success(`Book added successfully`);
     reset();
-    console.log(newBook);
   };
   return (
     <>

@@ -7,6 +7,7 @@ import BookDetails from "../pages/BookDetails";
 import EditBooks from "../pages/EditBooks";
 import App from "../App";
 import PrivetRoute from "./PrivetRoute";
+import AllBook from "../pages/AllBook";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +44,10 @@ const routes = createBrowserRouter([
       {
         path: "/book-details/:id",
         element: <BookDetails />,
+      },
+      {
+        path: "/allBooks",
+        element: <AllBook />,
       },
     ],
   },

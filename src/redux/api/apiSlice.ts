@@ -6,18 +6,19 @@ import { Book } from "../../Types/globaltypes";
 export const bookApi = createApi({
   reducerPath: "bookApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
-  tagTypes: ["books", "reviews"],
+  tagTypes: ["SingleBooks", "reviews", "books"],
   endpoints: (builder) => ({
     getBooks: builder.query({
       query: () => ({
         url: "/books",
       }),
+      providesTags: ["books"],
     }),
     getSingleBook: builder.query({
       query: (id) => ({
         url: `/book/${id}`,
       }),
-      providesTags: ["books"],
+      providesTags: ["SingleBooks"],
     }),
     updateSingleBook: builder.mutation({
       query: (data: { id: string; data: Book }) => ({
@@ -25,7 +26,7 @@ export const bookApi = createApi({
         method: "POST",
         body: data.data,
       }),
-      invalidatesTags: ["books"],
+      invalidatesTags: ["SingleBooks"],
     }),
     postBook: builder.mutation({
       query: (data) => ({
@@ -33,6 +34,13 @@ export const bookApi = createApi({
         method: "POST",
         body: data,
       }),
+    }),
+    removeBook: builder.mutation({
+      query: (id) => ({
+        url: `/book/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["books"],
     }),
     getComment: builder.query({
       query: (id) => `/reviews/${id}`,
@@ -56,4 +64,5 @@ export const {
   useGetCommentQuery,
   usePostReviewsMutation,
   usePostBookMutation,
+  useRemoveBookMutation,
 } = bookApi;

@@ -26,7 +26,6 @@ export default function EditBooks() {
   }
   const { data } = useGetSingleBookQuery(id);
   const book = data?.data;
-  console.log(book);
 
   const onSubmit = (data: Book) => {
     if (book.ownerEmail !== user.email) {
