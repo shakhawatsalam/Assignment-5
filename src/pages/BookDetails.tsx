@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProductReview } from "../component/ProductReview";
 import { useGetSingleBookQuery } from "../redux/api/apiSlice";
 import { svg } from "../ui/svg";
@@ -45,24 +45,6 @@ export default function BookDetails() {
                   className='btn btn-info btn-lg'>
                   Edit Book
                 </button>}
-                {/* <Link
-                  className='inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-sm lg:text-base text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800'
-                  to={`/editbooks/${book?._id}`}>
-                  Edit Book
-                  <svg
-                    className='w-2.5 h-2.5'
-                    width='16'
-                    height='16'
-                    viewBox='0 0 16 16'
-                    fill='none'>
-                    <path
-                      d='M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14'
-                      stroke='currentColor'
-                      stroke-width='2'
-                      stroke-linecap='round'
-                    />
-                  </svg>
-                </Link> */}
               </div>
               {/* <!-- End Buttons --> */}
             </div>

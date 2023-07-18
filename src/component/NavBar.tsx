@@ -98,11 +98,11 @@ export default function NavBar() {
                 to='/allbooks'>
                 All Books
               </Link>
-              <a
+              <Link
                 className='font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500'
-                href='#'>
-                Blog
-              </a>
+                to='/allbooks'>
+                Wish List
+              </Link>
             </div>
           </div>
         </nav>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -5,9 +6,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
 import Footer from "../component/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../redux/features/user/userSlice";
-import { useAppDispatch } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { useCreateUserMutation } from "../redux/api/apiSlice";
 
 interface FormValues {
   email: string;
@@ -16,22 +18,30 @@ interface FormValues {
 }
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<FormValues>();
-
+  const { user, error, isError } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-
+  const [createUserToDatabase] = useCreateUserMutation();
   const onSubmit = async (data: FormValues) => {
     console.log(data);
-    const name = data.name;
-    const email = data.email;
-    const password = data.password;
-    // await createUserWithEmailAndPassword(email, password);
-    // await updateProfile({ displayName: data.name });
-    dispatch(createUser({ email: email, password: password }));
+    const userDB = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      wishList: [],
+      readingList: [],
+    };
+    const { email, password } = userDB;
+    await dispatch(createUser({ email: email, password: password }));
+    if (!isError && !error) {
+      await createUserToDatabase(userDB);
+      navigate("/");
+    }
   };
   return (
     <div>
@@ -163,4 +173,3 @@ export default function SignUp() {
     </div>
   );
 }
-

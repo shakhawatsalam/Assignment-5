@@ -61,6 +61,20 @@ export const bookApi = createApi({
       }),
       invalidatesTags: ["reviews"],
     }),
+    createUser: builder.mutation({
+      query: (data) => ({
+        url: `/users`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    addToWishList: builder.mutation({
+      query: ({ email, data }) => ({
+        url: `/wishlist/${email}`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -73,4 +87,6 @@ export const {
   usePostBookMutation,
   useRemoveBookMutation,
   useGetSearchTermBooksQuery,
+  useCreateUserMutation,
+  useAddToWishListMutation,
 } = bookApi;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -18,7 +19,7 @@ import { useForm } from "react-hook-form";
 
 
 export default function BookCard() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const [search, setSearch] = useState<string>("");
   console.log(search)
   const url = `books/?searchTerm=${search}`;
