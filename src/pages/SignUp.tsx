@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/require-await */
@@ -25,22 +26,35 @@ export default function SignUp() {
     handleSubmit,
   } = useForm<FormValues>();
   const { error, isError } = useAppSelector((state) => state.user);
+  console.log(error);
   const dispatch = useAppDispatch();
   const [createUserToDatabase] = useCreateUserMutation();
+  // if()
   const onSubmit = async (data: FormValues) => {
-    console.log(data);
-    const userDB = {
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      wishList: [],
-      readingList: [],
-    };
-    const { email, password } = userDB;
-    await dispatch(createUser({ email: email, password: password }));
-    if (!isError && !error) {
-      await createUserToDatabase(userDB);
-      navigate("/");
+    try {
+      console.log(data);
+      const userDB = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        wishList: [],
+        readingList: [],
+      };
+
+      const { email, password } = userDB;
+      await dispatch(createUser({ email, password }));
+
+      if (!isError && !error) {
+        await createUserToDatabase(userDB);
+
+        console.log("User created successfully.");
+
+        navigate("/");
+      } else {
+        console.log("User creation failed. Please try again later.");
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
     }
   };
   return (
@@ -144,7 +158,8 @@ export default function SignUp() {
               </div>
 
               {/* error message  */}
-              {/* {registerError} */}
+              <p className='text-red-500'>{error ? error : ""}</p>
+
               <input
                 className='btn w-full max-w-xs text-white bg-indigo-600 mt-5'
                 type='submit'

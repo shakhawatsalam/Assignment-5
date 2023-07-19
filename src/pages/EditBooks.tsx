@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
@@ -27,7 +28,7 @@ export default function EditBooks() {
   const { data } = useGetSingleBookQuery(id);
   const book = data?.data;
 
-  const onSubmit = (data: Book) => {
+  const onSubmit = (data: any) => {
     if (book.ownerEmail !== user.email) {
       toast.error(
         "You are not allowed to edit this book you are not the owner of the book"

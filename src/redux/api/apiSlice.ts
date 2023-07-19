@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Book } from "../../Types/globaltypes";
 
 export const bookApi = createApi({
   reducerPath: "bookApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
-  tagTypes: ["SingleBooks", "reviews", "books"],
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://assignment-5-server-three.vercel.app/",
+  }),
+  tagTypes: ["SingleBooks", "reviews", "books", "user"],
   endpoints: (builder) => ({
     getBooks: builder.query({
       query: (url) => ({
@@ -27,10 +28,10 @@ export const bookApi = createApi({
       providesTags: ["SingleBooks"],
     }),
     updateSingleBook: builder.mutation({
-      query: (data: { id: string; data: Book }) => ({
-        url: `/book/${data.id}`,
+      query: ({ id, data }) => ({
+        url: `/book/${id}`,
         method: "POST",
-        body: data.data,
+        body: data,
       }),
       invalidatesTags: ["SingleBooks"],
     }),
@@ -72,6 +73,7 @@ export const bookApi = createApi({
       query: (email) => ({
         url: `/users/${email}`,
       }),
+      providesTags: ["user"],
     }),
     addToWishList: builder.mutation({
       query: ({ email, data }) => ({
@@ -79,6 +81,7 @@ export const bookApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["user"],
     }),
     addToReadingList: builder.mutation({
       query: ({ email, data }) => ({
@@ -86,6 +89,7 @@ export const bookApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["user"],
     }),
   }),
 });

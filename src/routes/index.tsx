@@ -49,15 +49,27 @@ const routes = createBrowserRouter([
       },
       {
         path: "/allBooks",
-        element: <AllBook />,
+        element: (
+          <PrivetRoute>
+            <AllBook />
+          </PrivetRoute>
+        ),
       },
       {
         path: "/wishlist",
-        element: <WishList />,
+        element: (
+          <PrivetRoute>
+            <WishList />,
+          </PrivetRoute>
+        ),
       },
       {
         path: "/readinglist",
-        element: <ReadingList />,
+        element: (
+          <PrivetRoute>
+            <ReadingList />
+          </PrivetRoute>
+        ),
       },
     ],
   },
