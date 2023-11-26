@@ -4,14 +4,14 @@ export default function HeroSection() {
       <div className='max-w-[85rem] mx-auto  mt-20'>
         <div className='grid lg:grid-cols-7 lg:gap-x-8 xl:gap-x-12 lg:items-center'>
           <div className='lg:col-span-3'>
-            <h1 className='block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl lg:text-6xl dark:text-white'>
-              Build Better Products
+            <h1 className='block text-6xl md:text-5xl font-bold'>
+              A room without books is like a body without a soul.
             </h1>
-            <p className='mt-3 text-lg text-gray-800 dark:text-gray-400'>
+            <p className='mt-3 text-lg text-gray-800 dark:text-gray-400 font-semibold'>
               Introducing a new way for your brand to reach the creative
               community.
             </p>
-
+            <div className='bg-slate-300 h-[1px] mt-4'></div>
             <div className='mt-5 lg:mt-8 flex flex-col items-center gap-2 sm:flex-row sm:gap-3'>
               <div className='w-full sm:w-auto'>
                 <label htmlFor='hero-input' className='sr-only'>
